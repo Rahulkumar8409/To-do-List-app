@@ -7,30 +7,34 @@ function addTask() {
   } else {
     let li = document.createElement("li");
     li.innerHTML = inputBox.value;
-    console.log(li);
+
     listContainer.append(li);
-    let span=document.createElement("span");
-    span.innerHTML="\u00d7";
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7";
     li.appendChild(span);
   }
-  inputBox.value="";
+  inputBox.value = "";
   savaData();
 }
 
-listContainer.addEventListener("click",function(e){
-      if(e.target.tagName==='LI'){
-        e.target.classList.toggle("checked");
-        savaData();
-      }else if(e.target.tagName==="SPAN"){
-        e.target.parentElement.remove();
-        savaData();
-      }
-},false)
+listContainer.addEventListener(
+  "click",
+  function (e) {
+    if (e.target.tagName === "LI") {
+      e.target.classList.toggle("checked");
+      savaData();
+    } else if (e.target.tagName === "SPAN") {
+      e.target.parentElement.remove();
+      savaData();
+    }
+  },
+  false
+);
 
-function savaData(){
-  localStorage.setItem("data",listContainer.innerHTML);
+function savaData() {
+  localStorage.setItem("data", listContainer.innerHTML);
 }
-function showTask(){
-  listContainer.innerHTML=localStorage.getItem("data");
+function showTask() {
+  listContainer.innerHTML = localStorage.getItem("data");
 }
 showTask();
